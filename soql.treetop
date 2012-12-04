@@ -8,7 +8,7 @@ grammar Soql
   end
 
   rule field_list
-    select_expression space? comma space field_list / select_expression
+    select_expression space? comma space? field_list / select_expression
   end
 
   rule select_expression
