@@ -1,0 +1,69 @@
+grammar Soql
+  rule query
+    identifier
+  end
+
+  rule space
+    [\s]+
+  end
+
+  rule identifier
+    [_a-zA-Z] [\w]* #<Identifier>
+  end
+
+  rule integer_literal
+    ('+' / '-')? [0-9]+ #<IntegerLiteral>
+  end
+
+  rule string_literal
+    "'" string_value "'" #<StringLiteral>
+  end
+
+  rule string_value
+    (!"'" . / "\\'")*
+  end
+
+  rule true_literal
+    'true' !([_a-zA-Z] .) #<TrueLiteral>
+  end
+
+  rule false_literal
+    'false' !([_a-zA-Z] .) #<FalseLiteral>
+  end
+
+  rule boolean_literal
+    true_literal / false_literal
+  end
+
+  rule null_literal
+    'null' !([_a-zA-Z] .) #<NullLiteral>
+  end
+
+  rule literal
+    integer_literal / string_literal / boolean_literal / null_literal
+  end
+
+  rule equals_operator
+    '=' #<EqualsOperator>
+  end
+
+  rule not_equals_operator
+    '!=' #<NotEqualsOperator>
+  end
+
+  rule less_than_operator
+    '<' #<LessThanOperator>
+  end
+
+  rule greater_or_equals_operator
+    '>=' #<GreaterOrEqualsOperator>
+  end
+
+  rule less_or_equals_operator
+    '<=' #<LessOrEqualsOperator>
+  end
+
+  rule greater_than_operator
+    '>' #<GreaterThanOperator>
+  end
+end
