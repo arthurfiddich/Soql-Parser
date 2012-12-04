@@ -40,7 +40,7 @@ grammar Soql
   end
 
   rule field_bound_operator
-    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>'
+    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>' / includes / excludes
   end
 
   rule field_bound
@@ -236,6 +236,14 @@ grammar Soql
 
   rule group_by_cube
     group_by space "cube"
+  end
+
+  rule includes
+    "includes"
+  end
+
+  rule excludes
+    "excludes"
   end
 
   rule by
