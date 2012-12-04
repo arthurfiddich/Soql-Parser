@@ -1,6 +1,6 @@
 grammar Soql
   rule query
-    select_clause from_clause limit_clause? offset_clause?
+    select_clause from_clause group_by_clause? limit_clause? offset_clause?
   end
 
   rule select_clause
@@ -9,6 +9,10 @@ grammar Soql
 
   rule from_clause
     space from space identifier
+  end
+
+  rule group_by_clause
+    space group_by space field_group_by_list
   end
 
   rule limit_clause
@@ -23,8 +27,16 @@ grammar Soql
     select_expression space? comma space? field_list / select_expression
   end
 
+  rule field_group_by_list
+    group_by_expression space? comma space? field_group_by_list / group_by_expression
+  end
+
   rule select_expression
     subquery / aggregate_expression / date_expression / identifier
+  end
+
+  rule group_by_expression
+    date_expression / identifier
   end
 
   rule subquery
