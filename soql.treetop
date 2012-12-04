@@ -1,6 +1,6 @@
 grammar Soql
   rule query
-    select_clause from_clause group_by_clause? limit_clause? offset_clause?
+    select_clause from_clause group_by_clause? order_by_clause? limit_clause? offset_clause?
   end
 
   rule select_clause
@@ -13,6 +13,10 @@ grammar Soql
 
   rule group_by_clause
     group_by_rollup_clause / group_by_cube_clause / group_by_plain_clause
+  end
+
+  rule order_by_clause
+    space order_by space field_order_by_list
   end
 
   rule limit_clause
@@ -43,12 +47,36 @@ grammar Soql
     group_by_expression space? comma space? field_group_by_list / group_by_expression
   end
 
+  rule field_order_by_list
+    order_by_expression space? comma space? field_order_by_list / order_by_expression
+  end
+
   rule select_expression
     subquery / aggregate_expression / date_expression / identifier
   end
 
   rule group_by_expression
     date_expression / identifier
+  end
+
+  rule order_by_expression
+    group_by_expression ordering? null_behavior?
+  end
+
+  rule ordering
+    space asc_or_desc
+  end
+
+  rule asc_or_desc
+    'asc' / 'desc'
+  end
+
+  rule null_behavior
+    space 'nulls' space first_or_last
+  end
+
+  rule first_or_last
+    'first' / 'last'
   end
 
   rule subquery
