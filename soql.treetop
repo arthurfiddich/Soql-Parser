@@ -7,6 +7,10 @@ grammar Soql
     select space field_list
   end
 
+  rule from_clause
+    from space identifier
+  end
+
   rule field_list
     select_expression space? comma space? field_list / select_expression
   end
@@ -112,10 +116,6 @@ grammar Soql
 
   rule week_in_year
     "week_in_year"
-  end
-
-  rule from_clause
-    from space identifier
   end
 
   rule select
