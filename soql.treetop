@@ -1,6 +1,6 @@
 grammar Soql
   rule query
-    select_clause from_clause where_clause? group_by_clause? order_by_clause? limit_clause? offset_clause?
+    select_clause from_clause where_clause? group_by_clause? having_clause? order_by_clause? limit_clause? offset_clause?
   end
 
   rule select_clause
@@ -19,6 +19,10 @@ grammar Soql
     group_by_rollup_clause / group_by_cube_clause / group_by_plain_clause
   end
 
+  rule having_clause
+    space having space having_condition
+  end
+
   rule order_by_clause
     space order_by space field_order_by_list
   end
@@ -35,6 +39,10 @@ grammar Soql
     logical_condition3 / simple_condition
   end
 
+  rule having_condition
+    having_condition3
+  end
+
   rule simple_condition
     field_bound_condition / set_condition
   end
@@ -43,36 +51,72 @@ grammar Soql
     logical_or_condition / logical_condition2
   end
 
+  rule having_condition3
+    having_or_condition / having_condition2
+  end
+
   rule logical_condition2
     logical_and_condition / logical_condition1
+  end
+
+  rule having_condition2
+    having_and_condition / having_condition1
   end
 
   rule logical_condition1
     logical_not_condition / logical_condition0
   end
 
+  rule having_condition1
+    having_not_condition / having_condition0
+  end
+
   rule logical_condition0
     parenthesized_condition / simple_condition
+  end
+
+  rule having_condition0
+    parenthesized_having_condition / having_bound_condition
   end
 
   rule parenthesized_condition
     '(' space? condition space? ')'
   end
 
+  rule parenthesized_having_condition
+    '(' space? having_condition space? ')'
+  end
+
   rule logical_or_condition
     logical_condition2 space or space logical_condition3
+  end
+
+  rule having_or_condition
+    having_condition2 space or space having_condition3
   end
 
   rule logical_and_condition
     logical_condition1 space and space logical_condition2
   end
 
+  rule having_and_condition
+    having_condition1 space and space having_condition2
+  end
+
   rule logical_not_condition
     'not' space logical_condition0
   end
 
+  rule having_not_condition
+    'not' space having_condition0
+  end
+
   rule field_bound_condition
     identifier space? field_bound_operator space? literal
+  end
+
+  rule having_bound_condition
+    aggregate_expression space? field_bound_operator space? literal
   end
 
   rule set_condition
