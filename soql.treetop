@@ -1,6 +1,6 @@
 grammar Soql
   rule query
-    select_clause from_clause group_by_clause? order_by_clause? limit_clause? offset_clause?
+    select_clause from_clause where_clause? group_by_clause? order_by_clause? limit_clause? offset_clause?
   end
 
   rule select_clause
@@ -9,6 +9,10 @@ grammar Soql
 
   rule from_clause
     space from space identifier
+  end
+
+  rule where_clause
+    space where space condition
   end
 
   rule group_by_clause
@@ -25,6 +29,22 @@ grammar Soql
 
   rule offset_clause
     space offset space integer_literal
+  end
+
+  rule condition
+    field_bound_condition
+  end
+
+  rule field_bound_condition
+    identifier space? field_bound_operator space? field_bound
+  end
+
+  rule field_bound_operator
+    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>'
+  end
+
+  rule field_bound
+    integer_literal
   end
 
   rule group_by_plain_clause
