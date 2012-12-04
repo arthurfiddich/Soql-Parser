@@ -76,7 +76,7 @@ grammar Soql
   end
 
   rule set_condition
-    identifier space? set_operator space? set_values
+    identifier space set_operator space? set_values
   end
 
   rule field_bound_operator
