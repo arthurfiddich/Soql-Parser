@@ -32,7 +32,35 @@ grammar Soql
   end
 
   rule condition
+    logical_condition3 / simple_condition
+  end
+
+  rule simple_condition
     field_bound_condition / set_condition
+  end
+
+  rule logical_condition3
+    logical_or_condition / logical_condition2
+  end
+
+  rule logical_condition2
+    logical_and_condition / logical_condition1
+  end
+
+  rule logical_condition1
+    parenthesized_condition / simple_condition
+  end
+
+  rule parenthesized_condition
+    '(' space? condition space? ')'
+  end
+
+  rule logical_or_condition
+    logical_condition2 space or space logical_condition3
+  end
+
+  rule logical_and_condition
+    logical_condition1 space and space logical_condition2
   end
 
   rule field_bound_condition
@@ -268,6 +296,14 @@ grammar Soql
 
   rule by
     "by"
+  end
+
+  rule or
+    "or"
+  end
+
+  rule and
+    "and"
   end
 
   rule space
