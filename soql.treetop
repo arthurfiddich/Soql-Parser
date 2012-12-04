@@ -20,23 +20,15 @@ grammar Soql
   end
 
   rule aggregate_expression
-    aliased_aggregate_expression / unaliased_aggregate_expression / aliased_plain_count / unaliased_plain_count
+    unaliased_aggregate_expression / unaliased_plain_count
   end
 
   rule unaliased_aggregate_expression
     aggregate_function space? "(" space? identifier space? ")"
   end
 
-  rule aliased_aggregate_expression
-    unaliased_aggregate_expression space? identifier
-  end
-
   rule unaliased_plain_count
     count "(" space? ")"
-  end
-
-  rule aliased_plain_count
-    unaliased_plain_count space? identifier
   end
 
   rule aggregate_function
