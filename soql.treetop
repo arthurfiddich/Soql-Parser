@@ -48,6 +48,10 @@ grammar Soql
   end
 
   rule logical_condition1
+    logical_not_condition / logical_condition0
+  end
+
+  rule logical_condition0
     parenthesized_condition / simple_condition
   end
 
@@ -61,6 +65,10 @@ grammar Soql
 
   rule logical_and_condition
     logical_condition1 space and space logical_condition2
+  end
+
+  rule logical_not_condition
+    'not' space logical_condition0
   end
 
   rule field_bound_condition
