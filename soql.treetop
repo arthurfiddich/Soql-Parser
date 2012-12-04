@@ -12,7 +12,7 @@ grammar Soql
   end
 
   rule select_expression
-    subquery / aggregate_expression / identifier
+    subquery / aggregate_expression / date_expression / identifier
   end
 
   rule subquery
@@ -43,6 +43,17 @@ grammar Soql
     avg / count_distinct / count / min / max / sum
   end
 
+  rule date_expression
+    date_function space? "(" space? identifier space? ")"
+  end
+
+  rule date_function
+    calendar_month / calendar_quarter / calendar_year /
+    day_in_month / day_in_week / day_in_year / day_only /
+    fiscal_month / fiscal_quarter / fiscal_year /
+    hour_in_day / week_in_month / week_in_year
+  end
+
   rule avg
     "avg"
   end
@@ -65,6 +76,58 @@ grammar Soql
 
   rule sum
     "sum"
+  end
+
+  rule calendar_month
+    "calendar_month"
+  end
+
+  rule calendar_quarter
+    "calendar_quarter"
+  end
+
+  rule calendar_year
+    "calendar_year"
+  end
+
+  rule day_in_month
+    "day_in_month"
+  end
+
+  rule day_in_week
+    "day_in_week"
+  end
+
+  rule day_in_year
+    "day_in_year"
+  end
+
+  rule day_only
+    "day_only"
+  end
+
+  rule fiscal_month
+    "fiscal_month"
+  end
+
+  rule fiscal_quarter
+    "fiscal_quarter"
+  end
+
+  rule fiscal_year
+    "fiscal_year"
+  end
+
+  rule hour_in_day
+    "hour_in_day"
+  end
+
+  rule week_in_month
+    "week_in_month"
+  end
+
+  rule week_in_year
+    "week_in_year"
   end
 
   rule from_clause
