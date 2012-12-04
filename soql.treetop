@@ -12,11 +12,43 @@ grammar Soql
   end
 
   rule select_expression
-    subquery / identifier
+    subquery / aggregate_expression / identifier
   end
 
   rule subquery
     "(" space? query space? ")"
+  end
+
+  rule aggregate_expression
+    aggregate_function space? "(" space? identifier space? ")" / count "(" space? ")"
+  end
+
+  rule aggregate_function
+    avg / count_distinct / count / min / max / sum
+  end
+
+  rule avg
+    "avg"
+  end
+
+  rule count
+    "count"
+  end
+
+  rule count_distinct
+    "count_distinct"
+  end
+
+  rule min
+    "min"
+  end
+
+  rule max
+    "max"
+  end
+
+  rule sum
+    "sum"
   end
 
   rule from_clause
