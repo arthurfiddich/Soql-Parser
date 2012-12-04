@@ -395,7 +395,7 @@ grammar Soql
   end
 
   rule null_literal
-    'null' !([_a-zA-Z] .) #<NullLiteral>
+    'null' !([_a-zA-Z] .) <NullLiteral>
   end
 
   rule literal
