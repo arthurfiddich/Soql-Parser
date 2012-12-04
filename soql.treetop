@@ -44,7 +44,7 @@ grammar Soql
   end
 
   rule field_bound
-    integer_literal
+    literal
   end
 
   rule group_by_plain_clause
