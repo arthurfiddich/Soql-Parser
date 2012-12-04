@@ -12,7 +12,19 @@ grammar Soql
   end
 
   rule group_by_clause
+    group_by_rollup_clause / group_by_cube_clause / group_by_plain_clause
+  end
+
+  rule group_by_plain_clause
     space group_by space field_group_by_list
+  end
+
+  rule group_by_rollup_clause
+    space group_by_rollup space? '(' space? field_group_by_list space? ')'
+  end
+
+  rule group_by_cube_clause
+    space group_by_cube space? '(' space? field_group_by_list space? ')'
   end
 
   rule limit_clause
@@ -168,6 +180,14 @@ grammar Soql
 
   rule group_by
     "group" space by
+  end
+
+  rule group_by_rollup
+    group_by space "rollup"
+  end
+
+  rule group_by_cube
+    group_by space "cube"
   end
 
   rule by
