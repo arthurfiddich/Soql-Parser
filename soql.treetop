@@ -1,6 +1,18 @@
 grammar Soql
   rule query
-    select space identifier space from space identifier
+    select_clause space from_clause
+  end
+
+  rule select_clause
+    select space field_list
+  end
+
+  rule field_list
+    identifier space? comma space field_list / identifier
+  end
+
+  rule from_clause
+    from space identifier
   end
 
   rule select
@@ -13,6 +25,10 @@ grammar Soql
 
   rule space
     [\s]+
+  end
+
+  rule comma
+    ","
   end
 
   rule identifier
