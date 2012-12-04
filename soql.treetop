@@ -8,7 +8,15 @@ grammar Soql
   end
 
   rule field_list
-    identifier space? comma space field_list / identifier
+    select_expression space? comma space field_list / select_expression
+  end
+
+  rule select_expression
+    subquery / identifier
+  end
+
+  rule subquery
+    "(" space? query space? ")"
   end
 
   rule from_clause
