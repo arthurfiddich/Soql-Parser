@@ -1,6 +1,6 @@
 grammar Soql
   rule query
-    select_clause space from_clause
+    select_clause from_clause limit_clause?
   end
 
   rule select_clause
@@ -8,7 +8,11 @@ grammar Soql
   end
 
   rule from_clause
-    from space identifier
+    space from space identifier
+  end
+
+  rule limit_clause
+    space limit space integer_literal
   end
 
   rule field_list
