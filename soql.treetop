@@ -15,6 +15,14 @@ grammar Soql
     group_by_rollup_clause / group_by_cube_clause / group_by_plain_clause
   end
 
+  rule limit_clause
+    space limit space integer_literal
+  end
+
+  rule offset_clause
+    space offset space integer_literal
+  end
+
   rule group_by_plain_clause
     space group_by space field_group_by_list
   end
@@ -25,14 +33,6 @@ grammar Soql
 
   rule group_by_cube_clause
     space group_by_cube space? '(' space? field_group_by_list space? ')'
-  end
-
-  rule limit_clause
-    space limit space integer_literal
-  end
-
-  rule offset_clause
-    space offset space integer_literal
   end
 
   rule field_list
