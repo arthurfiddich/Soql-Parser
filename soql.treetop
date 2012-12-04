@@ -52,7 +52,7 @@ grammar Soql
   end
 
   rule set_values
-    '(' space? set_value_list space? ')'
+    subquery / '(' space? set_value_list space? ')'
   end
 
   rule set_value_list
