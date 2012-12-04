@@ -1,9 +1,9 @@
 To-Do Items
 ===========
 
-  * Grammar
+ * Grammar
 
 Grammar
 -------
 
-  * field, aggregate, and date function aliasing
+ * field, aggregate, and date function aliasing
