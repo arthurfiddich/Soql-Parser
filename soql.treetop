@@ -32,19 +32,31 @@ grammar Soql
   end
 
   rule condition
-    field_bound_condition
+    field_bound_condition / set_condition
   end
 
   rule field_bound_condition
-    identifier space? field_bound_operator space? field_bound
+    identifier space? field_bound_operator space? literal
+  end
+
+  rule set_condition
+    identifier space? set_operator space? set_values
   end
 
   rule field_bound_operator
     '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>' / includes / excludes
   end
 
-  rule field_bound
-    literal
+  rule set_operator
+    'in' / 'not' space 'in'
+  end
+
+  rule set_values
+    '(' space? set_value_list space? ')'
+  end
+
+  rule set_value_list
+    literal space? comma space? set_value_list / literal
   end
 
   rule group_by_plain_clause
@@ -244,6 +256,14 @@ grammar Soql
 
   rule excludes
     "excludes"
+  end
+
+  rule in
+    'in'
+  end
+
+  rule not_in
+    'not' space in
   end
 
   rule by
