@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'treetop'
 
-#require_relative 'nodes.rb'
+require_relative 'nodes.rb'
 
 class Parser
 

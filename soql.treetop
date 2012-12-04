@@ -367,15 +367,15 @@ grammar Soql
   end
 
   rule identifier
-    [_a-zA-Z] [\w]* #<Identifier>
+    [_a-zA-Z] [\w]* <Identifier>
   end
 
   rule integer_literal
-    ('+' / '-')? [0-9]+ #<IntegerLiteral>
+    ('+' / '-')? [0-9]+ <IntegerLiteral>
   end
 
   rule string_literal
-    "'" string_value "'" #<StringLiteral>
+    "'" string_value "'" <StringLiteral>
   end
 
   rule string_value
@@ -383,11 +383,11 @@ grammar Soql
   end
 
   rule true_literal
-    'true' !([_a-zA-Z] .) #<TrueLiteral>
+    'true' !([_a-zA-Z] .) <TrueLiteral>
   end
 
   rule false_literal
-    'false' !([_a-zA-Z] .) #<FalseLiteral>
+    'false' !([_a-zA-Z] .) <FalseLiteral>
   end
 
   rule boolean_literal
