@@ -16,11 +16,39 @@ grammar Soql
   end
 
   rule select
-    [sS] [eE] [lL] [eE] [cC] [tT]
+    "select"
   end
 
   rule from
-    [fF] [rR] [oO] [mM]
+    "from"
+  end
+
+  rule where
+    "where"
+  end
+
+  rule limit
+    "limit"
+  end
+
+  rule having
+    "having"
+  end
+
+  rule offset
+    "offset"
+  end
+
+  rule order_by
+    "order" space by
+  end
+
+  rule group_by
+    "group" space by
+  end
+
+  rule by
+    "by"
   end
 
   rule space
