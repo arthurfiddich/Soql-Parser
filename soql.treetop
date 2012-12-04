@@ -1,6 +1,14 @@
 grammar Soql
   rule query
-    identifier
+    select space identifier space from space identifier
+  end
+
+  rule select
+    [sS] [eE] [lL] [eE] [cC] [tT]
+  end
+
+  rule from
+    [fF] [rR] [oO] [mM]
   end
 
   rule space
