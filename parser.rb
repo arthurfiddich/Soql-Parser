@@ -21,18 +21,18 @@ class Parser
 			#{@@parser.failure_column}"
     end
 
-#    self.clean_tree(tree)
+    self.clean_tree(tree)
 
     return tree
   end
 
-#  private
+  private
 
-#  def self.clean_tree(root_node)
-#    return if(root_node.elements.nil?)
-#    root_node.elements.delete_if{|node| node.class.name == "Treetop::Runtime::SyntaxNode" && node.extension_modules.empty? }
-#    root_node.elements.each {|node| self.clean_tree(node) }
-#  end
+  def self.clean_tree(root_node)
+    return if(root_node.elements.nil?)
+    root_node.elements.delete_if{|node| node.class.name == "Treetop::Runtime::SyntaxNode" && node.extension_modules.empty? }
+    root_node.elements.each {|node| self.clean_tree(node) }
+  end
 end
 
 
