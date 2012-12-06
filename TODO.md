@@ -15,3 +15,4 @@ Grammar
  * decimal support
  * currency support
  * date support
+ * rich from clauses
