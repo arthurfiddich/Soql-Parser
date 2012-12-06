@@ -112,7 +112,7 @@ grammar Soql
   end
 
   rule field_condition
-    name space? field_operator space? literal
+    identifier space? field_operator space? literal
   end
 
   rule having_field_condition
