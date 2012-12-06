@@ -13,7 +13,4 @@ module Soql
 
   class FalseLiteral < Treetop::Runtime::SyntaxNode
   end
-
-  class Identifier < Treetop::Runtime::SyntaxNode
-  end
 end

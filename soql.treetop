@@ -8,7 +8,7 @@ grammar Soql
   end
 
   rule from_clause
-    space from space identifier
+    space from space unqualified_name
   end
 
   rule where_clause
@@ -112,7 +112,7 @@ grammar Soql
   end
 
   rule field_condition
-    identifier space? field_operator space? literal
+    name space? field_operator space? literal
   end
 
   rule having_field_condition
@@ -120,7 +120,7 @@ grammar Soql
   end
 
   rule set_condition
-    identifier space set_operator space? set_values
+    name space set_operator space? set_values
   end
 
   rule field_operator
@@ -168,11 +168,11 @@ grammar Soql
   end
 
   rule select_expression
-    subquery / aggregate_expression / date_expression / identifier
+    subquery / aggregate_expression / date_expression / name
   end
 
   rule group_by_expression
-    date_expression / identifier
+    date_expression / name
   end
 
   rule order_by_expression
@@ -200,7 +200,7 @@ grammar Soql
   end
 
   rule aggregate_expression
-    aggregate_function space? "(" space? identifier space? ")" / count "(" space? ")"
+    aggregate_function space? "(" space? name space? ")" / count "(" space? ")"
   end
 
   rule aggregate_function
@@ -208,7 +208,7 @@ grammar Soql
   end
 
   rule date_expression
-    date_function space? "(" space? identifier space? ")"
+    date_function space? "(" space? name space? ")"
   end
 
   rule date_function
@@ -374,8 +374,16 @@ grammar Soql
     ","
   end
 
-  rule identifier
-    [_a-zA-Z] [\w]* <Identifier>
+  rule name
+    qualified_name / unqualified_name
+  end
+
+  rule qualified_name
+    unqualified_name '.' unqualified_name
+  end
+
+  rule unqualified_name
+    [a-zA-Z] [_a-zA-Z0-9]*
   end
 
   rule integer_literal
