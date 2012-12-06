@@ -298,6 +298,62 @@ grammar Soql
     "week_in_year"
   end
 
+  rule date_formula_literal
+    "yesterday"            / "today"                / "tomorrow"            /
+    "last_week"            / "this_week"            / "next_week"           /
+    "last_month"           / "this_month"           / "next_month"          /
+    "last_quarter"         / "this_quarter"         / "next_quarter"        /
+    "last_fiscal_quarter"  / "this_fiscal_quarter"  / "next_fiscal_quarter" /
+    "last_year"            / "this_year"            / "next_year"           /
+    "last_fiscal_year"     / "this_fiscal_year"     / "next_fiscal_year"    /
+    "last_90_days"         / "next_90_days"         /
+    last_n_days            / next_n_days            /
+    last_n_quarters        / next_n_quarters        /
+    last_n_fiscal_quarters / next_n_fiscal_quarters /
+    last_n_years           / next_n_years           /
+    last_n_fiscal_years    / next_n_fiscal_years
+  end
+
+  rule last_n_days
+    "last_n_days" space? ":" space? positive_integer_literal
+  end
+
+  rule next_n_days
+    "next_n_days" space? ":" space? positive_integer_literal
+  end
+
+  rule last_n_quarters
+    "last_n_quarters" space? ":" space? positive_integer_literal
+  end
+
+  rule next_n_quarters
+    "next_n_quarters" space? ":" space? positive_integer_literal
+  end
+
+  rule last_n_fiscal_quarters
+    "last_n_fiscal_quarters" space? ":" space? positive_integer_literal
+  end
+
+  rule next_n_fiscal_quarters
+    "next_n_fiscal_quarters" space? ":" space? positive_integer_literal
+  end
+
+  rule last_n_years
+    "last_n_years" space? ":" space? positive_integer_literal
+  end
+
+  rule next_n_years
+    "next_n_years" space? ":" space? positive_integer_literal
+  end
+
+  rule last_n_fiscal_years
+    "last_n_fiscal_years" space? ":" space? positive_integer_literal
+  end
+
+  rule next_n_fiscal_years
+    "next_n_fiscal_years" space? ":" space? positive_integer_literal
+  end
+
   rule select
     "select"
   end
@@ -423,6 +479,6 @@ grammar Soql
   end
 
   rule literal
-    integer_literal / string_literal / boolean_literal / null_literal
+    date_formula_literal / integer_literal / string_literal / boolean_literal / null_literal
   end
 end
