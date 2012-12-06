@@ -116,7 +116,7 @@ grammar Soql
   end
 
   rule having_field_condition
-    aggregate_expression space? field_operator space? literal
+    aggregate_expression space? having_operator space? literal
   end
 
   rule set_condition
@@ -124,11 +124,15 @@ grammar Soql
   end
 
   rule field_operator
-    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>' / includes / excludes
+    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>' / 'like'
+  end
+
+  rule having_operator
+    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>'
   end
 
   rule set_operator
-    'in' / 'not' space 'in'
+    'in' / 'not' space 'in' / includes / excludes
   end
 
   rule set_values
