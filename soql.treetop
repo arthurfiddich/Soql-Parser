@@ -28,11 +28,11 @@ grammar Soql
   end
 
   rule limit_clause
-    space limit space integer_literal
+    space limit space positive_integer_literal
   end
 
   rule offset_clause
-    space offset space integer_literal
+    space offset space positive_integer_literal
   end
 
   rule condition
@@ -372,6 +372,10 @@ grammar Soql
 
   rule integer_literal
     ('+' / '-')? [0-9]+ <IntegerLiteral>
+  end
+
+  rule positive_integer_literal
+    [0-9]+ <IntegerLiteral>
   end
 
   rule string_literal
