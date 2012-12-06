@@ -454,6 +454,46 @@ grammar Soql
     [0-9]+ <IntegerLiteral>
   end
 
+  rule date_literal
+    year '-' month '-' day
+  end
+
+  rule datetime_literal
+    date_literal [ t] hour ':' minute ':' second timezone?
+  end
+
+  rule year
+    [0-9] [0-9] [0-9] [0-9]
+  end
+
+  rule month
+    "0" [0-9] / "1" [0-2]
+  end
+
+  rule day
+    [0-2] [0-9] / "3" [01]
+  end
+
+  rule hour
+    [01] [0-9] / "2" [0-3]
+  end
+
+  rule minute
+    [0-5] [0-9]
+  end
+
+  rule second
+    [0-5] [0-9] ( "." positive_integer_literal )?
+  end
+
+  rule timezone
+    'z' / [-+] tzhour ( ':' minute )?
+  end
+
+  rule tzhour
+    hour / [0-9]
+  end
+
   rule string_literal
     "'" string_value "'" <StringLiteral>
   end
@@ -479,6 +519,6 @@ grammar Soql
   end
 
   rule literal
-    date_formula_literal / integer_literal / string_literal / boolean_literal / null_literal
+    date_formula_literal / datetime_literal / date_literal / integer_literal / string_literal / boolean_literal / null_literal
   end
 end

@@ -11,5 +11,4 @@ Grammar
  * USING clause
  * decimal support
  * currency support
- * date support
  * rich from clauses
