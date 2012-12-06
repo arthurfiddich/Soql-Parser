@@ -11,7 +11,6 @@ Grammar
  * USING clause
  * qualified names
  * toLabel
- * MATHOPERATOR ???
  * decimal support
  * currency support
  * date support
