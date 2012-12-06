@@ -168,7 +168,11 @@ grammar Soql
   end
 
   rule select_expression
-    subquery / aggregate_expression / date_expression / name
+    subquery / aggregate_expression / date_expression / to_label_expression / name
+  end
+
+  rule to_label_expression
+    'tolabel' space? '(' space? name space? ')'
   end
 
   rule group_by_expression

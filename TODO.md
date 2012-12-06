@@ -9,7 +9,6 @@ Grammar
  * field, aggregate, and date function aliasing
  * AS keyword
  * USING clause
- * toLabel
  * decimal support
  * currency support
  * date support
