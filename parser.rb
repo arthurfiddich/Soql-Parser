@@ -11,8 +11,8 @@ class Parser
     @@parser = SoqlParser.new
   end
 
-  def self.parse(data,options={})
-    tree = @@parser.parse(data,options)
+  def self.parse(data, options={})
+    tree = @@parser.parse data.downcase, options
     
     if(tree.nil?)
       raise Exception, "Parse error at offset: #{@@parser.index}
