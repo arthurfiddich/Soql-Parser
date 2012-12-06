@@ -124,7 +124,7 @@ grammar Soql
   end
 
   rule field_operator
-    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>' / 'like'
+    '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>' / like
   end
 
   rule having_operator
@@ -132,7 +132,7 @@ grammar Soql
   end
 
   rule set_operator
-    'in' / 'not' space 'in' / includes / excludes
+    in / not_in / includes / excludes
   end
 
   rule set_values
@@ -340,6 +340,10 @@ grammar Soql
 
   rule excludes
     "excludes"
+  end
+
+  rule like
+    "like"
   end
 
   rule in
