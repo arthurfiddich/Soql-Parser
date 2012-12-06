@@ -44,7 +44,7 @@ grammar Soql
   end
 
   rule simple_condition
-    field_bound_condition / set_condition
+    field_condition / set_condition
   end
 
   rule logical_condition3
@@ -76,7 +76,7 @@ grammar Soql
   end
 
   rule having_condition0
-    parenthesized_having_condition / having_bound_condition
+    parenthesized_having_condition / having_field_condition
   end
 
   rule parenthesized_condition
@@ -111,19 +111,19 @@ grammar Soql
     'not' space having_condition0
   end
 
-  rule field_bound_condition
-    identifier space? field_bound_operator space? literal
+  rule field_condition
+    name space? field_operator space? literal
   end
 
-  rule having_bound_condition
-    aggregate_expression space? field_bound_operator space? literal
+  rule having_field_condition
+    aggregate_expression space? field_operator space? literal
   end
 
   rule set_condition
     identifier space set_operator space? set_values
   end
 
-  rule field_bound_operator
+  rule field_operator
     '=' / '!=' / '<>' / '<=' / '<' / '>=' / '>' / includes / excludes
   end
 
