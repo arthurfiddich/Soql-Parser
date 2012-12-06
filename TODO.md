@@ -12,3 +12,6 @@ Grammar
  * qualified names
  * toLabel
  * MATHOPERATOR ???
+ * decimal support
+ * currency support
+ * date support
